@@ -451,7 +451,9 @@ DELIMITER ;
 
 -- incrementar stock al borrar un préstamo
 
+use biblioteca;
 
+DROP function fn_prestamos;
 DELIMITER $$
 CREATE FUNCTION fn_prestamos ( p_titulo varchar (100))
 RETURNS int
@@ -467,7 +469,20 @@ RETURN v_prestamos;
 END $$
 DELIMITER ;
 
-SELECT titulo_libro, fn_prestamos(titulo_libro)
+SELECT titulo_libro, fn_prestamos(titulo_libro) as prestamos
 FROM libros;
+
+-- Los prestamos de libros de cada editorial
+-- ordenado de más a menos
+
+-- SP para devolver un libro: id_usuario, id_libro, fecha de devolucion
+-- Dispara un trigger que actualiza el stock de libros
+
+-- Crea una tabla para guardar los logs con las acciones realizadas:
+-- préstamos, devoluciones, etc.
+
+
+
+
 
 
